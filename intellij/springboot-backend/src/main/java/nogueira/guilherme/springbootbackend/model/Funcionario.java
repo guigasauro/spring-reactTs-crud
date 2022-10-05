@@ -13,11 +13,17 @@ public class Funcionario {
     @Column(name = "nome")
     private String nome;
 
+    @Column(name = "cpf")
+    private String cpf;
+
     @Column(name = "email")
     private String email;
 
     @Column(name = "cargo")
     private String cargo;
+
+    @Column(name = "salario")
+    private double salario;
 
     public Funcionario(){}
 
@@ -42,6 +48,14 @@ public class Funcionario {
         this.nome = nome;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -56,6 +70,14 @@ public class Funcionario {
 
     public void setCargo(String cargo) {
         this.cargo = cargo;
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
     }
 }
 

@@ -25,8 +25,10 @@ class ListaFuncionariosComponent extends Component<any, any> {
                         <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Nome</th>
+                        <th scope="col">CPF</th>
                         <th scope="col">Email</th>
                         <th scope="col">Cargo</th>
+                        <th scope="col">Salário</th>
                         <th scope="col">Ações</th>
                         </tr>
                     </thead>
@@ -37,8 +39,10 @@ class ListaFuncionariosComponent extends Component<any, any> {
                                 <tr key = {funcionario.id}>
                                     <td>{funcionario.id}</td>
                                     <td>{funcionario.nome}</td>
+                                    <td>{funcionario.cpf}</td>
                                     <td>{funcionario.email}</td>
                                     <td>{funcionario.cargo}</td>
+                                    <td>{funcionario.salario}</td>
                                 </tr>
                             )
                         }
