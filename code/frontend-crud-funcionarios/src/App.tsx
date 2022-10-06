@@ -1,10 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {BrowserRouter as Router, Route, Routes as Switch} from 'react-router-dom'
-import ListaFuncionariosComponent from './components/ListaFuncionariosComponent';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import ListaFuncionarios from './components/ListaFuncionarios';
 import HeaderComponent from './components/HeaderComponent';
 import FooterComponent from './components/FooterComponent';
+import CadastraFuncionario from './components/CadastraFuncionario';
+import AtualizaFuncionario from './components/AtualizaFuncionario';
 
 function App() {
   return (
@@ -12,10 +14,11 @@ function App() {
       <Router>
         <HeaderComponent />
           <header className="container">
-            <Switch>
-              <Route path = "/" element={<ListaFuncionariosComponent/>}></Route>
-              <Route path = "/funcionarios" element={<ListaFuncionariosComponent/>}></Route>
-            </Switch>
+            <Routes>
+              <Route path='/atualiza-funcionario' element={<AtualizaFuncionario/>}/>
+              <Route path='/cadastra-funcionario' element={<CadastraFuncionario/>}/>
+              <Route path='' element={<ListaFuncionarios/>}/>
+            </Routes>
           </header>
         <FooterComponent />
       </Router>

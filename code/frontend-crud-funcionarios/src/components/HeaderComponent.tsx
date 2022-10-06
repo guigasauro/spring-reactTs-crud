@@ -12,7 +12,7 @@ class HeaderComponent extends Component {
                 <header>
                     <nav className="navbar navbar-dark bg-dark">
                         <div className="container-fluid">
-                            <a className="navbar-brand" href="#">
+                            <a className="navbar-brand" href="/">
                                 <img src="https://avatars.githubusercontent.com/u/73141392?v=4" style={logoStyle} alt="logo" width="30" height="30" className="d-inline-block align-text-top" />
                                 Gerenciamento de Funcionários
                             </a>

@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -39,7 +41,7 @@ public class FuncionarioController {
     }
 
     // atualiza funcionário
-    @PutMapping("/employees/{id}")
+    @PutMapping("/funcionarios/{id}")
     public ResponseEntity<Funcionario> atualizaFuncionario(
             @PathVariable Long id,
             @RequestBody Funcionario funcionarioDetails){
@@ -58,4 +60,17 @@ public class FuncionarioController {
         return ResponseEntity.ok(funcionarioAtualizado);
     }
 
+
+    // excluir funcionário
+    @DeleteMapping("/funcionarios/{id}")
+    public ResponseEntity<Map<String, Boolean>> excluiFuncionario(@PathVariable Long id){
+        Funcionario funcionario = funcionarioRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Funcionário não encontrado com id: " + id)
+        );
+
+        funcionarioRepository.delete(funcionario);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
+    }
 }
