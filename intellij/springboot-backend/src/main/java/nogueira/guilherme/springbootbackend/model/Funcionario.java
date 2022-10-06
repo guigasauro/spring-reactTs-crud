@@ -27,9 +27,12 @@ public class Funcionario {
 
     public Funcionario(){}
 
-    public Funcionario(String nome, String email) {
+    public Funcionario(String nome, String cpf, String email, String cargo, double salario) {
         this.nome = nome;
+        this.cpf = cpf;
         this.email = email;
+        this.cargo = cargo;
+        this.salario = salario;
     }
 
     public long getId() {
