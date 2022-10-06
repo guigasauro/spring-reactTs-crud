@@ -24,7 +24,6 @@ public class FuncionarioController {
     }
 
     // criar um funcionário
-
     @PostMapping("/funcionarios")
     public Funcionario criarFuncionario(@RequestBody Funcionario funcionario){
         return funcionarioRepository.save(funcionario);
@@ -37,6 +36,26 @@ public class FuncionarioController {
                 () -> new ResourceNotFoundException("Funcionário não encontrado com id: " + id)
         );
         return ResponseEntity.ok(funcionario);
+    }
+
+    // atualiza funcionário
+    @PutMapping("/employees/{id}")
+    public ResponseEntity<Funcionario> atualizaFuncionario(
+            @PathVariable Long id,
+            @RequestBody Funcionario funcionarioDetails){
+
+        Funcionario funcionario = funcionarioRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Funcionário não encontrado com id: " + id)
+        );
+
+        funcionario.setNome(funcionarioDetails.getNome());
+        funcionario.setCpf(funcionarioDetails.getCpf());
+        funcionario.setEmail(funcionarioDetails.getEmail());
+        funcionario.setCargo(funcionarioDetails.getCargo());
+        funcionario.setSalario(funcionarioDetails.getSalario());
+
+        Funcionario funcionarioAtualizado = funcionarioRepository.save(funcionario);
+        return ResponseEntity.ok(funcionarioAtualizado);
     }
 
 }
