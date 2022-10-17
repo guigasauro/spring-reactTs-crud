@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState} from "react";
 import { Link } from "react-router-dom";
+import * as FuncionariosService from '../services/FuncionariosService';
 import ListaFuncionarios from "./ListaFuncionarios";
 
 export default function CadastrarFuncionario(){
@@ -10,7 +11,7 @@ export default function CadastrarFuncionario(){
     const [cpf, setCPF] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [cargo, setCargo] = useState<string>('');
-    const [salario, setSalario] = useState<number>();
+    const [salario, setSalario] = useState<any>();
 
     useEffect(() => {
         setID(localStorage.getItem('ID'))
@@ -18,9 +19,11 @@ export default function CadastrarFuncionario(){
         setCPF(localStorage.getItem('CPF') as string)
         setEmail(localStorage.getItem('E-mail') as string)
         setCargo(localStorage.getItem('Cargo') as string)
-        setSalario(parseInt(localStorage.getItem('Salario') as string))
+        setSalario(JSON.parse(localStorage.getItem('Salario') as string))
 
-    }, [])
+    }, []) 
+
+    
 
     let funcionario = {
         id: id,
@@ -32,7 +35,8 @@ export default function CadastrarFuncionario(){
     }
 
     const updateAPIData = () =>{
-        axios.put('http://localhost:8080/api/v1/funcionarios' + '/' +  id , funcionario);
+        FuncionariosService.updateFuncionario(id, funcionario);
+        FuncionariosService.getListaFuncionarios();
     }
 
     return(

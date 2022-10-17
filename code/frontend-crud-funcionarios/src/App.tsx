@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import ListaFuncionarios from './components/ListaFuncionarios';
@@ -13,13 +12,13 @@ function App() {
     <div className="App">
       <Router>
         <HeaderComponent />
-          <header className="container">
+          <div className="container">
             <Routes>
               <Route path='/atualiza-funcionario' element={<AtualizaFuncionario/>}/>
               <Route path='/cadastra-funcionario' element={<CadastraFuncionario/>}/>
               <Route path='' element={<ListaFuncionarios/>}/>
             </Routes>
-          </header>
+          </div>
         <FooterComponent />
       </Router>
     </div>

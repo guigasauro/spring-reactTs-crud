@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState} from "react";
 import { Link } from "react-router-dom";
+import * as FuncionariosService from '../services/FuncionariosService';
 
 export default function CadastrarFuncionario(){
     const [nome, setNome] = useState<string>('');
@@ -18,8 +19,10 @@ export default function CadastrarFuncionario(){
     }
 
     const postData = () =>{
-        axios.post('http://localhost:8080/api/v1/funcionarios', funcionario)
+        FuncionariosService.createFuncionario(funcionario);
     }
+
+    // vamo testar
 
     return(
         <div>

@@ -1,16 +1,21 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import * as FuncionariosService from '../services/FuncionariosService';
 import { Link } from 'react-router-dom';
 
 export default function ListaFuncionarios(){
     const [funcionarios, setFuncionarios] = useState<any[]>([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/v1/funcionarios')
-            .then((response) =>{
+        FuncionariosService.getListaFuncionarios().then((response) =>{
                 setFuncionarios(response.data);
             });
     }, []);
+
+    const getData = () =>{
+        FuncionariosService.getListaFuncionarios().then((getData) => {
+            setFuncionarios(getData.data);
+        })
+    }
 
     const setData = (data) =>{
         let {id, nome, cpf, email, cargo, salario} = data;
@@ -19,19 +24,11 @@ export default function ListaFuncionarios(){
         localStorage.setItem('CPF', cpf);
         localStorage.setItem('E-mail', email);
         localStorage.setItem('Cargo', cargo);
-        localStorage.setItem('Salário', salario);
-    }
-
-    const getData = () =>{
-        axios.get('http://localhost:8080/api/v1/funcionarios')
-        .then((getData) => {
-            setFuncionarios(getData.data);
-        })
+        localStorage.setItem('Salario', JSON.stringify(salario));
     }
 
     const onDelete = (id) =>{
-        axios.delete('http://localhost:8080/api/v1/funcionarios' + '/' + id)
-        .then(() =>{
+        FuncionariosService.deleteFuncionario(id).then(() =>{
             getData();
         })
     }
